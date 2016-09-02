@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.ggamedirdemo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.remote_controller.MainActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.remote_controller.GameActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.remote_controller.custom4D2F.GameActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.stage.MainActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.stage.GameActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.detect_area.GameActivity">
+        </activity>
+        <activity
+            android:name="org.ggamedirdemo.layer.GameActivity">
+        </activity>
+    </application>
+
+</manifest>
