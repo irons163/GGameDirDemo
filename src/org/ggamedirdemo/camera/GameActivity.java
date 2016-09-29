@@ -1,4 +1,4 @@
-package org.ggamedirdemo.layer;
+package org.ggamedirdemo.camera;
 
 import org.ggamedirdemo.MainActivity;
 import org.ggamedirdemo.R;
@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.try_gameengine.framework.Config;
-import com.example.try_gameengine.framework.HUDLayer;
 import com.example.try_gameengine.framework.LayerManager;
 import com.example.try_gameengine.framework.Config.DestanceType;
 import com.example.try_gameengine.scene.Scene;
@@ -26,7 +25,7 @@ public class GameActivity extends Stage{
 	SceneManager sceneManager;
 	
 	private String[] strs = new String[]{
-			"Layers", "MultiDetectArea", "ScaleDetectArea", "SpriteAction", "PositionLayers", "ChildLayers", "ClipOutSideLayers", "BasicLayers", "Transform", "HUDLayers", "SpriteDetectArea"
+			"Layers", "MultiDetectArea", "ScaleDetectArea", "SpriteAction", "PositionLayers", "ChildLayers", "ClipOutSideLayers", "BasicLayers", "Transform", "SpriteDetectArea"
 	};
 	
 	@Override
@@ -75,9 +74,6 @@ public class GameActivity extends Stage{
 					sceneManager.startScene(8);
 					break;
 				case 9:
-					sceneManager.startScene(9);
-					break;
-				case 10:
 					intent = new Intent(GameActivity.this, org.ggamedirdemo.stage.MainActivity.class);
 					startActivity(intent);
 					break;
@@ -123,21 +119,20 @@ public class GameActivity extends Stage{
 		BitmapUtil.initBitmap(this);
 	
 //		LayerManager.setLayerBySenceIndex(0);
-		Scene scene = new TransformScene(this, "a", 0, Scene.RESUME);
+//		Scene scene = new TransformScene(this, "a", 0, Scene.RESUME);
 //		LayerManager.setLayerBySenceIndex(1);
 //		Scene scene2 = new MultiDetectAreaScene(this, "b", 1, Scene.RESTART);
 		
 		sceneManager = new SceneManager();
-		sceneManager.addScene(scene);
+//		sceneManager.addScene(scene);
 //		sceneManager.addScene(scene2);
-		sceneManager.addScene(MultiDetectAreaScene.class, this, "b", 1, Scene.RESTART);
-		sceneManager.addScene(ScaleScene.class, this, "c", 2, Scene.RESTART);
-		sceneManager.addScene(SpriteActionScene.class, this, "d", 3, Scene.RESTART);
-		sceneManager.addScene(PositionScene.class, this, "e", 4, Scene.RESTART);
-		sceneManager.addScene(ChildClipOutSideScene.class, this, "f", 6, Scene.RESTART);
-		sceneManager.addScene(BasicLayerScene.class, this, "g", 7, Scene.RESTART);
-		sceneManager.addScene(TransformScene.class, this, "g", 8, Scene.RESTART);
-		sceneManager.addScene(HUDLayerScene.class, this, "g", 9, Scene.RESTART);
+//		sceneManager.addScene(MultiDetectAreaScene.class, this, "b", 1, Scene.RESTART);
+//		sceneManager.addScene(ScaleScene.class, this, "c", 2, Scene.RESTART);
+//		sceneManager.addScene(SpriteActionScene.class, this, "d", 3, Scene.RESTART);
+//		sceneManager.addScene(PositionScene.class, this, "e", 4, Scene.RESTART);
+//		sceneManager.addScene(ChildClipOutSideScene.class, this, "f", 6, Scene.RESTART);
+//		sceneManager.addScene(BasicLayerScene.class, this, "g", 7, Scene.RESTART);
+//		sceneManager.addScene(TransformScene.class, this, "g", 8, Scene.RESTART);
 		
 //		sceneManager.startScene(0);
 		

@@ -29,7 +29,6 @@ import com.example.try_gameengine.action.MAction;
 import com.example.try_gameengine.action.MovementAction;
 import com.example.try_gameengine.action.MovementAtionController;
 import com.example.try_gameengine.action.listener.IActionListener;
-import com.example.try_gameengine.enemy.EnemyManager;
 import com.example.try_gameengine.framework.ALayer;
 import com.example.try_gameengine.framework.ALayer.LayerParam;
 import com.example.try_gameengine.framework.ButtonLayer;
@@ -48,9 +47,9 @@ import com.example.try_gameengine.remotecontroller.IRemoteController;
 import com.example.try_gameengine.remotecontroller.RemoteController;
 import com.example.try_gameengine.remotecontroller.RemoteController.CommandType;
 import com.example.try_gameengine.remotecontroller.RemoteController.RemoteContollerListener;
-import com.example.try_gameengine.remotecontroller.custome.Custome4D2FCommand;
-import com.example.try_gameengine.remotecontroller.custome.Custome4D2FCommandType;
-import com.example.try_gameengine.remotecontroller.custome.Custome4D2FRemoteController;
+import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommand;
+import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommandType;
+import com.example.try_gameengine.remotecontroller.custome.Custom4D2FRemoteController;
 import com.example.try_gameengine.scene.DialogScene;
 import com.example.try_gameengine.scene.EasyScene;
 import com.example.try_gameengine.utils.DetectArea;
@@ -198,7 +197,7 @@ public class ChildScene extends EasyScene{
 		}
 
 		@Override
-		public ConcurrentLinkedQueue<ILayer> getLayers() {
+		public List<ILayer> getLayers() {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -552,6 +551,18 @@ public class ChildScene extends EasyScene{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public boolean isUsedzPosition() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void setAutoAdd(boolean autoAdd) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	};
 	
@@ -607,12 +618,12 @@ public class ChildScene extends EasyScene{
 		super(context, id, level, mode);
 		// TODO Auto-generated constructor stub
 		isEnableRemoteController(true);
-		Custome4D2FRemoteController remoteController = Custome4D2FRemoteController.createRemoteController();
+		Custom4D2FRemoteController remoteController = Custom4D2FRemoteController.createRemoteController();
 		setRemoteController(remoteController);
-		custom4d2fRemoteContollerListener.setCustom4D2FRemoteContollerListener(new Custome4D2FRemoteController.RemoteContollerListener() {
+		custom4d2fRemoteContollerListener.setCustom4D2FRemoteContollerListener(new Custom4D2FRemoteController.RemoteContollerListener() {
 			
 			@Override
-			public void pressDown(List<Custome4D2FCommandType> commandTypes) {
+			public void pressDown(List<Custom4D2FCommandType> commandTypes) {
 				// TODO Auto-generated method stub
 				
 			}

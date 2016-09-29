@@ -21,7 +21,6 @@ import com.example.try_gameengine.action.MAction;
 import com.example.try_gameengine.action.MovementAction;
 import com.example.try_gameengine.action.MovementAtionController;
 import com.example.try_gameengine.action.listener.IActionListener;
-import com.example.try_gameengine.enemy.EnemyManager;
 import com.example.try_gameengine.framework.ButtonLayer;
 import com.example.try_gameengine.framework.GameView;
 import com.example.try_gameengine.framework.IGameController;
@@ -60,7 +59,6 @@ public class MyScene extends EasyScene{
 	
 	private List<Sheep> sheeps = new ArrayList<Sheep>();
 	
-	private EnemyManager enemyManager;
 	private Sprite crosshair;
 	
 	private float moveXOfSheep = 5;
@@ -313,11 +311,6 @@ public class MyScene extends EasyScene{
 		});
 		spriteDetectAreaHandler.apply();
 		sheep.setSpriteDetectAreaHandler(spriteDetectAreaHandler);
-		
-		enemyManager = new EnemyManager();
-		enemyManager.setRedEnemyBitmap(BitmapUtil.redPoint);
-		enemyManager.setBlueEnemyBitmap(BitmapUtil.bluePoint);
-		enemyManager.createEnemy();
 		crosshair = new Crosshair(CommonUtil.screenWidth/2, CommonUtil.screenHeight/2, false);
 		
 //		sprite.setAction(actionName);
@@ -548,7 +541,6 @@ public class MyScene extends EasyScene{
 	}
 	
 	public void drawEnemis(Canvas canvas){
-		enemyManager.drawEnemies(canvas);
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.widget.Toast;
 
+import com.example.try_gameengine.Camera.Camera;
 import com.example.try_gameengine.action.MAction;
 import com.example.try_gameengine.action.MovementAction;
 import com.example.try_gameengine.action.MovementAtionController;
@@ -33,6 +34,7 @@ import com.example.try_gameengine.framework.ALayer;
 import com.example.try_gameengine.framework.ALayer.LayerParam;
 import com.example.try_gameengine.framework.ButtonLayer;
 import com.example.try_gameengine.framework.GameView;
+import com.example.try_gameengine.framework.HUDLayer;
 import com.example.try_gameengine.framework.IGameController;
 import com.example.try_gameengine.framework.IGameModel;
 import com.example.try_gameengine.framework.ILayer;
@@ -65,32 +67,43 @@ import com.example.try_gameengine.utils.SpriteDetectAreaBehavior;
 import com.example.try_gameengine.utils.SpriteDetectAreaHandler;
 import com.example.try_gameengine.utils.SpriteDetectAreaHelper;
 
-public class ScaleScene extends EasyScene{
+public class HUDLayerScene extends EasyScene{
 	private int gameTime;
 	
 	private GameTimeUtil gameTimeUtil;
 	
 	private Custom4D2FRemoteContollerListener custom4d2fRemoteContollerListener = new Custom4D2FRemoteContollerListener();
 	
-	private RectF userRectF = new RectF(100, 200, 200, 300);
-	private RectF rotateCenterRectF = new RectF(500, 200, 600, 300);
-	private RectF rectF = new RectF(100, 500, 200, 600);
+	private RectF userRectF = new RectF(100, 100, 200, 200);
+	private RectF rotateCenterRectF = new RectF(300, 100, 400, 200);
+	private RectF rectF = new RectF(100, 300, 200, 400);
 	private float circleRadius = 50;
 //	private PointF circleCenter = new PointF(550, 250);
 //	private PointF pointF = new PointF(500, 500);
-	private RectF rectF2 = new RectF(800, 200, 900, 300);
-	private RectF rectF3 = new RectF(500, 500, 600, 600);
-	private RectF rectF4 = new RectF(100, 800, 200, 900);
+	private RectF rectF2 = new RectF(500, 100, 600, 200);
+	private RectF rectF3 = new RectF(300, 300, 400, 400);
+	private RectF rectF4 = new RectF(500, 300, 600, 400);
+	private RectF rectF5 = new RectF(100, 500, 200, 600);
+	private RectF rectF6 = new RectF(300, 500, 400, 600);
+	private RectF rectF7 = new RectF(500, 500, 600, 600);
+	private RectF rectF8 = new RectF(100, 700, 200, 800);
+	private RectF rectF9 = new RectF(300, 700, 400, 800);
+	private RectF rectF10 = new RectF(500, 700, 600, 800);
 	private Sprite sprite = new Sprite();
 	private LabelLayer dirMsgLayer = new LabelLayer(0.0f, 50.0f, false);
 	private LabelLayer collisionMsgLayer = new LabelLayer(0.0f, 70.0f, false);
-	private Sprite userRectMsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect1Layer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rectRotateCenterMsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rectMsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite circleMsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite pointMsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rect2MsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rect3MsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect4MsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect5MsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect6MsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect7MsgLayer = new Sprite(0.0f, 50.0f, false);
+	private Sprite rect8MsgLayer = new Sprite(0.0f, 50.0f, false);
 	private DetectArea userRectDetectArea;
 	private DetectArea rectDetectArea;
 	private DetectArea circleDetectArea;
@@ -614,9 +627,14 @@ public class ScaleScene extends EasyScene{
 //		}
 //	}
 	
-	public ScaleScene(final Context context, String id, int level, int mode) {
+	public HUDLayerScene(final Context context, String id, int level, int mode) {
 		super(context, id, level, mode);
 		// TODO Auto-generated constructor stub
+		setWidth(500);
+		setHeight(500);
+		setPosition(200, 200);
+		setBackgroundColor(Color.WHITE);
+		
 		isEnableRemoteController(true);
 		Custom4D2FRemoteController remoteController = Custom4D2FRemoteController.createRemoteController();
 		setRemoteController(remoteController);
@@ -632,18 +650,24 @@ public class ScaleScene extends EasyScene{
 		
 		setDectecAreas();
 		
-		userRectMsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect1Layer.setAnchorPoint(0.5f, 1.0f);
 		rectRotateCenterMsgLayer.setAnchorPoint(0.5f, 1.0f);
 		rectMsgLayer.setAnchorPoint(0.5f, 1.0f);
 		circleMsgLayer.setAnchorPoint(0.5f, 1.0f);
 		pointMsgLayer.setAnchorPoint(0.5f, 1.0f);
 		rect2MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect3MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect4MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect5MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect6MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect7MsgLayer.setAnchorPoint(0.5f, 1.0f);
+		rect8MsgLayer.setAnchorPoint(0.5f, 1.0f);
 //		userRectMsgLayer.setAnchorPoint(0.5f, 0.0f);
 //		rectMsgLayer.setAnchorPoint(0.5f, 0.0f);
 //		circleMsgLayer.setAnchorPoint(0.5f, 0.0f);
 //		pointMsgLayer.setAnchorPoint(0.5f, 0.0f);
 		
-		userRectMsgLayer.setPosition(userRectF.centerX(), userRectF.bottom);
+		rect1Layer.setPosition(userRectF.centerX(), userRectF.bottom);
 		rectRotateCenterMsgLayer.setPosition(rotateCenterRectF.centerX(), rotateCenterRectF.bottom);
 		rectMsgLayer.setPosition(rectF.centerX(), rectF.bottom);
 //		circleMsgLayer.setPosition(circleCenter.x, circleCenter.y+circleRadius);
@@ -651,92 +675,429 @@ public class ScaleScene extends EasyScene{
 		circleMsgLayer.setPosition(rectF2.centerX(), rectF2.bottom);
 		pointMsgLayer.setPosition(rectF3.centerX(), rectF3.bottom);
 		rect2MsgLayer.setPosition(rectF4.centerX(), rectF4.bottom);
+		rect3MsgLayer.setPosition(rectF5.centerX(), rectF5.bottom);
+		rect4MsgLayer.setPosition(rectF6.centerX(), rectF6.bottom);
+		rect5MsgLayer.setPosition(rectF7.centerX(), rectF7.bottom);
+		rect6MsgLayer.setPosition(rectF8.centerX(), rectF8.bottom);
+		rect7MsgLayer.setPosition(rectF9.centerX(), rectF9.bottom);
+		rect8MsgLayer.setPosition(rectF10.centerX(), rectF10.bottom);
 		
-		userRectMsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect1Layer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rectRotateCenterMsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rectMsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		circleMsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		pointMsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rect2MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		
-		userRectMsgLayer.setXscale(2.0f);
-		rectRotateCenterMsgLayer.setXscale(2.0f);
-		rectMsgLayer.setXscale(2.0f);
-		circleMsgLayer.setXscale(2.0f);
-		pointMsgLayer.setXscale(2.0f);
-		rect2MsgLayer.setXscale(2.0f);
+		rect3MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect4MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect5MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect6MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect7MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect8MsgLayer.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		
 		Paint paint = new Paint();
 		paint.setColor(Color.BLUE);
 		
-		userRectMsgLayer.setPaint(paint);
+		rect1Layer.setPaint(paint);
 		rectRotateCenterMsgLayer.setPaint(paint);
 		rectMsgLayer.setPaint(paint);
 		circleMsgLayer.setPaint(paint);
 		pointMsgLayer.setPaint(paint);
 		rect2MsgLayer.setPaint(paint);
+		rect3MsgLayer.setPaint(paint);
+		rect4MsgLayer.setPaint(paint);
+		rect5MsgLayer.setPaint(paint);
+		rect6MsgLayer.setPaint(paint);
+		rect7MsgLayer.setPaint(paint);
+		rect8MsgLayer.setPaint(paint);
 		
 		Sprite child = new Sprite();
-//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		userRectMsgLayer.addChild(child);
+		child.setRotation(5);
+		rect1Layer.addChild(child);
+//		rect1Layer.setIsClipOutside(true);
+		rect1Layer.setRotation(45);
+		rect1Layer.setBackgroundColor(Color.BLUE);
+
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setAnchorPoint(-0.5f, -0.1f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect1Layer.getChild(0).addChild(child);
+		
 		
 		child = new Sprite();
 //		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		child.getLayerParam().setEnabledBindPositionXY(true);
-		child.getLayerParam().setBindPositionXY(child.getX(), child.getY());
+		child.setRotation(5);
 		rectRotateCenterMsgLayer.addChild(child);
-		rectRotateCenterMsgLayer.setRotation(90);
-		
+		rectRotateCenterMsgLayer.setRotation(45);
+		rectRotateCenterMsgLayer.setIsClipOutside(true);
+		rectRotateCenterMsgLayer.setBackgroundColor(Color.BLUE);
+//		child.setIsClipOutside(true);
 		
 		child = new Sprite();
+//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
-		child.setRotationType(RotationType.ROTATE_WITH_CENTER);
+//		child.setXscale(0.83f);
+//		child.setYscale(0.83f);
+		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		child.getLayerParam().setEnabledBindPositionXY(true);
-		child.getLayerParam().setBindPositionXY(child.getX(), child.getY());
+		rectRotateCenterMsgLayer.getChild(0).addChild(child);
+		
+		child = new Sprite();
+//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
+		child.setPosition(0, 0);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		child.setRotation(5);
 		circleMsgLayer.addChild(child);
-		circleMsgLayer.setRotation(90);
-		
+		circleMsgLayer.setRotation(45);
+		circleMsgLayer.setIsClipOutside(true);
+		circleMsgLayer.setBackgroundColor(Color.BLUE);
+		child.setIsClipOutside(true);
 		
 		child = new Sprite();
+//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
+//		child.setXscale(0.83f);
+//		child.setYscale(0.83f);
+		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rectMsgLayer.addChild(child);
-		rectMsgLayer.setRotation(45);
+		circleMsgLayer.getChild(0).addChild(child);
+//		circleMsgLayer.setRotation(90);
+		
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
-		child.setRotationType(RotationType.ROTATE_WITH_ANCHOR_POINT);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		child.setRotation(5);
+		rectMsgLayer.addChild(child);
+		rectMsgLayer.setIsClipOutside(true);
+		rectMsgLayer.setRotation(45);
+		rectMsgLayer.setBackgroundColor(Color.BLUE);
+		child.setIsClipOutside(true);
+		
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Mid touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setAnchorPoint(-0.5f, -0.1f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rectMsgLayer.getChild(0).addChild(child);
+		
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Top touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		rectMsgLayer.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Bottom touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		LayerParam layerParam = new LayerParam();
+//		layerParam.setPercentageX(0.5f);
+//		layerParam.setEnabledPercentagePositionX(true);
+//		child.setLayerParam(layerParam);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		pointMsgLayer.addChild(child);
-		pointMsgLayer.setRotation(45);
-		pointMsgLayer.setRotationType(RotationType.ROTATE_WITH_ANCHOR_POINT);
+		Layer layer = new Layer();
+		layer.setBackgroundColor(Color.RED);
+		layer.setzPosition(-1);
+		pointMsgLayer.setAutoSizeByChildren(layer);
+//		pointMsgLayer.setBackgroundColor(Color.BLUE);
+//		pointMsgLayer.setRotation(45);
+		
+		
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
-		child.setXscale(0.2f);
-		child.setYscale(0.2f);
-		child.setRotationType(RotationType.ROTATE_WITH_ANCHOR_POINT);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		layerParam = new LayerParam();
+		layerParam.setPercentageX(0.5f);
+		layerParam.setPercentageY(0.5f);
+		layerParam.setEnabledPercentagePositionX(true);
+		layerParam.setEnabledPercentagePositionY(true);
+		child.setLayerParam(layerParam);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		child.getLayerParam().setEnabledBindPositionXY(true);
-		child.getLayerParam().setBindPositionXY(child.getX(), child.getY());
 		rect2MsgLayer.addChild(child);
-		rect2MsgLayer.setRotation(45);
-		rect2MsgLayer.setRotationType(RotationType.ROTATE_WITH_ANCHOR_POINT);
+//		rect2MsgLayer.setRotation(45);
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		child.setRotation(5);
+		rect3MsgLayer.addChild(child);
+//		rect1Layer.setIsClipOutside(true);
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Mid touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		rect3MsgLayer.setRotation(45);
+		rect3MsgLayer.setBackgroundColor(Color.BLUE);
+		Layer autoSizelayer = new Layer();
+		autoSizelayer.setBackgroundColor(Color.YELLOW);
+		autoSizelayer.setzPosition(-1);
+		rect3MsgLayer.setAutoSizeByChildren(autoSizelayer);
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setAnchorPoint(-0.5f, -0.1f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect3MsgLayer.getChild(0).addChild(child);
+		
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Top touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		rect3MsgLayer.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Bottom touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		autoSizelayer.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "AutoSizeLayer touch", Toast.LENGTH_SHORT).show();
+			}
+		});		
+		
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setXscale(1.23f);
+		child.setYscale(1.23f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		child.setRotation(5);
+		rect4MsgLayer.addChild(child);
+		rect4MsgLayer.setIsClipOutside(true);
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Mid touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		rect4MsgLayer.setRotation(45);
+		rect4MsgLayer.setBackgroundColor(Color.BLUE);
+		autoSizelayer = new Layer();
+		autoSizelayer.setBackgroundColor(Color.YELLOW);
+		autoSizelayer.setzPosition(-1);
+		rect4MsgLayer.setAutoSizeByChildren(autoSizelayer);
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setAnchorPoint(-0.5f, -0.1f);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect4MsgLayer.getChild(0).addChild(child);
+		
+		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Top touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		rect4MsgLayer.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "Bottom touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		autoSizelayer.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "AutoSizeLayer touch", Toast.LENGTH_SHORT).show();
+			}
+		});	
+		
+		
+		child = new Sprite();
+		child.setPosition(0, 0);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+		child.setAnchorPoint(0.5f, 0.5f);
+		layerParam = new LayerParam();
+		layerParam.setPercentageW(0.5f);
+		layerParam.setPercentageH(0.5f);
+		layerParam.setEnabledPercentageSizeW(true);
+		layerParam.setEnabledPercentageSizeH(true);
+		layerParam.setPercentageX(0.5f);
+		layerParam.setPercentageY(0.5f);
+		layerParam.setEnabledPercentagePositionX(true);
+		layerParam.setEnabledPercentagePositionY(true);
+		child.setLayerParam(layerParam);
+		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect5MsgLayer.addChild(child);
+		
+		
+		child = new Sprite();
+		child.setBitmapAndAutoChangeWH(BitmapUtil.fireball);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+//		child.setAnchorPoint(0.5f, 0.5f);
+//		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect6MsgLayer.addChild(child);
+		
+		child = new Sprite();
+		child.setBitmapAndAutoChangeWH(BitmapUtil.fireball);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+		child.setAnchorPoint(0.5f, 0.5f);
+//		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
+		rect7MsgLayer.addChild(child);
+		
+		child = new Sprite();
+		child.setBitmapAndAutoChangeWH(BitmapUtil.fireball);
+		child.setXscale(0.3f);
+		child.setYscale(0.3f);
+		layerParam = new LayerParam();
+		layerParam.setPercentageW(0.5f);
+		layerParam.setPercentageH(0.5f);
+		layerParam.setEnabledPercentageSizeW(true);
+		layerParam.setEnabledPercentageSizeH(true);
+		layerParam.setPercentageX(0.5f);
+		layerParam.setEnabledPercentagePositionX(true);
+		child.setLayerParam(layerParam);
+		child.setAnchorPoint(0.5f, 0.5f);
+		rect8MsgLayer.addChild(child);
+		
+		
+		/**
+		 * HUD
+		 */
+		HUDLayer hudLayer = new HUDLayer();
+		hudLayer.setWidth(200);
+		hudLayer.setHeight(200);
+		hudLayer.setBackgroundColor(Color.CYAN);
+		hudLayer.setOnLayerClickListener(new OnLayerClickListener() {
+			
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				Toast.makeText(context, "CYAN HUD Layer touch", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		hudLayer = new HUDLayer();
+		hudLayer.setPosition(0, 400);
+		hudLayer.setWidth(200);
+		hudLayer.setHeight(200);
+		hudLayer.setBackgroundColor(Color.CYAN);
+		hudLayer.addChild(new LabelLayer("Rotate ViewPort", 0, 0, false));
+		hudLayer.setOnLayerClickListener(new OnLayerClickListener() {
+			Camera camera;
+			@Override
+			public void onClick(ILayer layer) {
+				// TODO Auto-generated method stub
+				if(camera==null){
+					camera = new Camera(0, 0, gameview.getWidth()+00, gameview.getHeight());
+					setCamera(camera);
+					getCamera().enableClearViewNextTime();
+				}
+//				getCamera().translate(1500, 1500);
+				getCamera().setCameraTranslateBeforeApply(0, 0);
+//				getCamera().zoom(-1.0f);
+				getCamera().rotation(-45); //viewport, touchrange, spinner,edittext,save    
+				getCamera().setViewPort(0, 0, gameview.getWidth()/2, gameview.getHeight()/2);
+				getCamera().getViewPort().setRotation(45);
+				getCamera().getViewPortRectF();
+				
+				getCamera().applyCameraSpaceToViewPort();
+			}
+		});
+		
+		
+		addChild(rect1Layer);
+		addChild(rectRotateCenterMsgLayer);
+		addChild(rectMsgLayer);
+		addChild(circleMsgLayer);
+		addChild(pointMsgLayer);
+		addChild(rect2MsgLayer);
+		addChild(rect3MsgLayer);
+		addChild(rect4MsgLayer);
+		addChild(rect5MsgLayer);
+		addChild(rect6MsgLayer);
+		addChild(rect7MsgLayer);
+		addChild(rect8MsgLayer);
+		
+		rect1Layer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rectRotateCenterMsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rectMsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		circleMsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		pointMsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect2MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect3MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect4MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect5MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect6MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect7MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
+		rect8MsgLayer.setRotationType(RotationType.ROTATE_WITH_CENTER);
 	}
 
 	GameView gameview;
@@ -758,6 +1119,7 @@ public class ScaleScene extends EasyScene{
 	@Override
 	public void process() {
 		// TODO Auto-generated method stub
+		super.process();
 		checkPlayerMoved();
 //		checkDetectAreasCollision();
 		tickTime();
@@ -788,7 +1150,7 @@ public class ScaleScene extends EasyScene{
 			dirMsgLayer.setText("");
 		}
 		
-		userRectMsgLayer.setPosition(userRectF.centerX(), userRectF.bottom);
+		rect1Layer.setPosition(userRectF.centerX(), userRectF.bottom);
 //		player.frameTrig();
 	}
 
@@ -797,7 +1159,7 @@ public class ScaleScene extends EasyScene{
 		// TODO Auto-generated method stub
 //		sprite.drawSelf(canvas, null);
 //		LayerManager.drawLayers(canvas, null);
-		LayerManager.drawSceneLayers(canvas, null, sceneLayerLevel);
+		LayerManager.drawSceneLayersForNegativeZOrder(canvas, null, sceneLayerLevel);
 		
 		Paint paint = new Paint();
 		paint.setTextSize(50);
@@ -807,8 +1169,6 @@ public class ScaleScene extends EasyScene{
 		dirMsgLayer.drawSelf(canvas, paint);
 		collisionMsgLayer.drawSelf(canvas, paint);
 		
-
-		
 		canvas.drawRect(userRectF, paint);
 		canvas.drawRect(rotateCenterRectF, paint);
 		canvas.drawRect(rectF, paint);
@@ -817,32 +1177,40 @@ public class ScaleScene extends EasyScene{
 		canvas.drawRect(rectF2, paint);
 		canvas.drawRect(rectF3, paint);
 		canvas.drawRect(rectF4, paint);
+		canvas.drawRect(rectF5, paint);
+		canvas.drawRect(rectF6, paint);
+		canvas.drawRect(rectF7, paint);
+		canvas.drawRect(rectF8, paint);
+		canvas.drawRect(rectF9, paint);
+		canvas.drawRect(rectF10, paint);
 		
-		userRectMsgLayer.drawSelf(canvas, null);
-		rectRotateCenterMsgLayer.drawSelf(canvas, null);
-		rectMsgLayer.drawSelf(canvas, null);
-		circleMsgLayer.drawSelf(canvas, null);
-		pointMsgLayer.drawSelf(canvas, null);
-		rect2MsgLayer.drawSelf(canvas, null);
+		LayerManager.drawSceneLayersForOppositeZOrder(canvas, null, sceneLayerLevel);
 	}
 
 	int count =0;
-	float x = 0;
-	float y = 0;
+//	float x = 0;
+//	float y = 0;
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
+	public boolean onSceneTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			x = event.getX();
-			y = event.getY();
-		}else if(event.getAction() == MotionEvent.ACTION_MOVE){
-			float dx = event.getX() - x;
-			float dy = event.getY() - y;
-			
-			x = event.getX();
-			y = event.getY();
-		}
-		return super.onTouchEvent(event);
+		return super.onSceneTouchEvent(event);
+//		if(event.getAction() == MotionEvent.ACTION_DOWN){
+//			x = event.getX();
+//			y = event.getY();
+//		}else if(event.getAction() == MotionEvent.ACTION_MOVE){
+//			float dx = event.getX() - x;
+//			float dy = event.getY() - y;
+//			
+//			x = event.getX();
+//			y = event.getY();
+//		}
+//		
+//		boolean isTouched =  LayerManager.onTouchLayersForOppositeZOrder(event) ||
+//				rect1Layer.onTouchEvent(event) || rectMsgLayer.onTouchEvent(event)||
+//				LayerManager.onTouchLayersForNegativeZOrder(event);
+//		
+////		return super.onTouchEvent(event);
+//		return isTouched;
 	}
 	
 	@Override
