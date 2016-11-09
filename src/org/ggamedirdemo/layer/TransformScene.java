@@ -564,6 +564,36 @@ public class TransformScene extends EasyScene{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public boolean isEnable() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void setEnable(boolean isEnable) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean isHidden() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean isVisible() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void setVisible(boolean isVisible) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	};
 	
@@ -577,7 +607,7 @@ public class TransformScene extends EasyScene{
 		DetectArea a = new DetectAreaSpriteRect(new RectF(), new DetectAreaSpriteRect.SpriteRectListener() {
 			
 			@Override
-			public RectF caculateSpriteRect() {
+			public RectF calculateSpriteRect() {
 				// TODO Auto-generated method stub
 				RectF rectF;
 				if(sprite.getLocationInScene()!=null)
@@ -588,7 +618,7 @@ public class TransformScene extends EasyScene{
 			}
 			
 			@Override
-			public PointF caculateSpriteCenter() {
+			public PointF calculateSpriteCenter() {
 				// TODO Auto-generated method stub;
 				PointF pointF;
 				if(sprite.getLocationInScene()!=null)

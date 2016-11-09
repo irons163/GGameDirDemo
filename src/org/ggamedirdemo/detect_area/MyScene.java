@@ -92,7 +92,7 @@ public class MyScene extends EasyScene{
 		DetectArea a = new DetectAreaSpriteRect(new RectF(), new DetectAreaSpriteRect.SpriteRectListener() {
 			
 			@Override
-			public RectF caculateSpriteRect() {
+			public RectF calculateSpriteRect() {
 				// TODO Auto-generated method stub
 				RectF rectF;
 				if(sprite.getLocationInScene()!=null)
@@ -103,7 +103,7 @@ public class MyScene extends EasyScene{
 			}
 			
 			@Override
-			public PointF caculateSpriteCenter() {
+			public PointF calculateSpriteCenter() {
 				// TODO Auto-generated method stub;
 				PointF pointF;
 				if(sprite.getLocationInScene()!=null)
