@@ -40,7 +40,7 @@ import com.example.try_gameengine.framework.LabelLayer;
 import com.example.try_gameengine.framework.Layer;
 import com.example.try_gameengine.framework.LayerManager;
 import com.example.try_gameengine.framework.Sprite;
-import com.example.try_gameengine.framework.LabelLayer.LabelBaseLine;
+import com.example.try_gameengine.framework.LabelLayer.AlignmentVertical;
 import com.example.try_gameengine.framework.Sprite.MoveRageType;
 import com.example.try_gameengine.remotecontroller.IRemoteController;
 import com.example.try_gameengine.remotecontroller.RemoteController;
@@ -662,10 +662,10 @@ public class MyScene extends EasyScene{
 //		circleMsgLayer.setAnchorPoint(0.5f, 0.0f);
 //		pointMsgLayer.setAnchorPoint(0.5f, 0.0f);
 		
-		userRectMsgLayer.setLabelBaseLine(LabelBaseLine.BASELINE_FOR_TEXT_TOP);
-		rectMsgLayer.setLabelBaseLine(LabelBaseLine.BASELINE_FOR_TEXT_TOP);
-		circleMsgLayer.setLabelBaseLine(LabelBaseLine.BASELINE_FOR_TEXT_TOP);
-		pointMsgLayer.setLabelBaseLine(LabelBaseLine.BASELINE_FOR_TEXT_TOP);
+		userRectMsgLayer.setAlignmentVertical(AlignmentVertical.ALIGNMENT_TOP);
+		rectMsgLayer.setAlignmentVertical(AlignmentVertical.ALIGNMENT_TOP);
+		circleMsgLayer.setAlignmentVertical(AlignmentVertical.ALIGNMENT_TOP);
+		pointMsgLayer.setAlignmentVertical(AlignmentVertical.ALIGNMENT_TOP);
 		
 		userRectMsgLayer.setText("USER RECTj");
 		rectMsgLayer.setText("RECTj");
