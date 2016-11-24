@@ -3,7 +3,6 @@ package org.ggamedirdemo;
 import org.ggamedirdemo.remote_controller.GameActivity;
 import org.w3c.dom.ls.LSException;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +29,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		ListView listView = (ListView) findViewById(R.id.listView1);
-		listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strs));
+		listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strs));
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override

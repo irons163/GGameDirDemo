@@ -54,7 +54,7 @@ public class MyScene extends EasyScene{
 	private List<Sprite> fireballs = new CopyOnWriteArrayList<Sprite>();
 	Sprite player;
 	private int move = 0;
-	private LinkedHashSet<Integer> keySequence	= new LinkedHashSet<>();
+	private LinkedHashSet<Integer> keySequence	= new LinkedHashSet<Integer>();
 	public static final int LEFT = 1;
 	public static final int RIGHT = 2;
 	public static final int UP = 3;
