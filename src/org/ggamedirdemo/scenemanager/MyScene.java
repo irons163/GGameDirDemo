@@ -166,7 +166,7 @@ public class MyScene extends EasyScene{
 								float x = event.getX();
 								float y = event.getY();
 								
-								LayerManager.onTouchSceneLayers(event, dialogScene.getLayerLevel());
+								LayerManager.getInstance().onTouchSceneLayers(event, dialogScene.getLayerLevel());
 								
 
 							}
@@ -528,7 +528,7 @@ public class MyScene extends EasyScene{
 				float x = event.getX();
 				float y = event.getY();
 				
-				LayerManager.onTouchSceneLayers(event, dialogScene.getLayerLevel());
+				LayerManager.getInstance().onTouchSceneLayers(event, dialogScene.getLayerLevel());
 				
 
 			}
@@ -548,8 +548,8 @@ public class MyScene extends EasyScene{
 	public void doDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 //		sprite.drawSelf(canvas, null);
-//		LayerManager.drawLayers(canvas, null);
-		LayerManager.drawSceneLayers(canvas, null, sceneLayerLevel);
+//		LayerManager.getInstance().drawLayers(canvas, null);
+		LayerManager.getInstance().drawSceneLayers(canvas, null, sceneLayerLevel);
 		
 		Paint paint = new Paint();
 		paint.setTextSize(50);

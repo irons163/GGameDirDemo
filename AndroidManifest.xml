@@ -43,6 +43,9 @@
         <activity
             android:name="org.ggamedirdemo.layer.GameActivity">
         </activity>
+        <activity
+            android:name="org.ggamedirdemo.touchevent.GameActivity">
+        </activity>
     </application>
 
 </manifest>

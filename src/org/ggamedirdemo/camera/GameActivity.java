@@ -118,9 +118,9 @@ public class GameActivity extends Stage{
 		}
 		BitmapUtil.initBitmap(this);
 	
-//		LayerManager.setLayerBySenceIndex(0);
+//		LayerManager.getInstance().setLayerBySenceIndex(0);
 //		Scene scene = new TransformScene(this, "a", 0, Scene.RESUME);
-//		LayerManager.setLayerBySenceIndex(1);
+//		LayerManager.getInstance().setLayerBySenceIndex(1);
 //		Scene scene2 = new MultiDetectAreaScene(this, "b", 1, Scene.RESTART);
 		
 		sceneManager = new SceneManager();

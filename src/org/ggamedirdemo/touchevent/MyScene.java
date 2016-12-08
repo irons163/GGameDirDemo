@@ -1,12 +1,6 @@
-package org.ggamedirdemo.detect_area;
+package org.ggamedirdemo.touchevent;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,50 +8,37 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.widget.Toast;
 
-import com.example.try_gameengine.action.MAction;
-import com.example.try_gameengine.action.MovementAction;
-import com.example.try_gameengine.action.MovementAtionController;
-import com.example.try_gameengine.action.listener.IActionListener;
+import com.example.try_gameengine.framework.ALayer;
 import com.example.try_gameengine.framework.ButtonLayer;
 import com.example.try_gameengine.framework.GameView;
 import com.example.try_gameengine.framework.IGameController;
 import com.example.try_gameengine.framework.IGameModel;
+import com.example.try_gameengine.framework.ITouchable;
 import com.example.try_gameengine.framework.LabelLayer;
+import com.example.try_gameengine.framework.LabelLayer.AlignmentVertical;
 import com.example.try_gameengine.framework.Layer;
 import com.example.try_gameengine.framework.LayerManager;
 import com.example.try_gameengine.framework.Sprite;
-import com.example.try_gameengine.framework.LabelLayer.AlignmentVertical;
-import com.example.try_gameengine.framework.Sprite.MoveRageType;
-import com.example.try_gameengine.remotecontroller.IRemoteController;
-import com.example.try_gameengine.remotecontroller.RemoteController;
-import com.example.try_gameengine.remotecontroller.RemoteController.CommandType;
-import com.example.try_gameengine.remotecontroller.RemoteController.RemoteContollerListener;
-import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommand;
+import com.example.try_gameengine.framework.TouchDispatcher;
 import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommandType;
+import com.example.try_gameengine.remotecontroller.custome.Custom4D2FRemoteContollerListener;
 import com.example.try_gameengine.remotecontroller.custome.Custom4D2FRemoteController;
-import com.example.try_gameengine.scene.DialogScene;
 import com.example.try_gameengine.scene.EasyScene;
 import com.example.try_gameengine.utils.DetectArea;
 import com.example.try_gameengine.utils.DetectAreaPoint;
 import com.example.try_gameengine.utils.DetectAreaRect;
-import com.example.try_gameengine.utils.DetectAreaRequest;
 import com.example.try_gameengine.utils.DetectAreaRound;
 import com.example.try_gameengine.utils.DetectAreaSpriteRect;
 import com.example.try_gameengine.utils.GameTimeUtil;
-import com.example.try_gameengine.utils.IDetectAreaRequest;
-import com.example.try_gameengine.utils.ISpriteDetectAreaListener;
-import com.example.try_gameengine.utils.SpriteDetectAreaBehavior;
 import com.example.try_gameengine.utils.SpriteDetectAreaHandler;
-import com.example.try_gameengine.utils.SpriteDetectAreaHelper;
+
+
 
 public class MyScene extends EasyScene{
 	private int gameTime;
@@ -82,6 +63,32 @@ public class MyScene extends EasyScene{
 	private DetectArea rectDetectArea;
 	private DetectArea circleDetectArea;
 	private DetectArea pointDetectArea;
+	
+	private LabelLayer labelLayer = new LabelLayer(0, 0, false);
+	private ButtonLayer buttonLayer = new ButtonLayer(0, 0, false);
+	
+	private ALayer s = new Sprite();
+	
+	private ALayer a = new Layer();
+	
+	private ALayer m = new ALayer() {
+		
+		@Override
+		protected void onTouched(MotionEvent event) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void drawSelf(Canvas canvas, Paint paint) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+	class MyA extends Activity{
+		
+	};
 	
 	private void setDectecAreas(){
 		userRectDetectArea = new DetectAreaRect(userRectF);
@@ -179,6 +186,119 @@ public class MyScene extends EasyScene{
 		rectMsgLayer.setPaint(paint);
 		circleMsgLayer.setPaint(paint);
 		pointMsgLayer.setPaint(paint);
+		
+		ButtonLayer bg = new ButtonLayer(600, 600, true);
+//		addChild(bg);
+//		addAutoDraw(bg);
+		touchableObjectMsgLabel.setText("MsgLabelText");
+		addAutoDraw(touchableObjectMsgLabel);
+		
+		ButtonLayer buttonLayer1 = new ButtonLayer();
+		
+		buttonLayer1.setHeight(200);
+		buttonLayer1.setWidth(400);
+		buttonLayer1.setText("1");
+		bg.addChild(buttonLayer1);
+		TouchDispatcher.getInstance().addStandardTouchDelegate(buttonLayer1, 3);
+		
+		ButtonLayer buttonLayer2 = new ButtonLayer();
+		
+		buttonLayer2.setHeight(200);
+		buttonLayer2.setWidth(400);
+		buttonLayer2.setText("222");
+		buttonLayer2.setPosition(200, 120);
+		bg.addChild(buttonLayer2);
+		TouchDispatcher.getInstance().addStandardTouchDelegate(buttonLayer2, 2);
+		
+		ButtonLayer buttonLayer3 = new ButtonLayer();
+		
+		buttonLayer3.setHeight(200);
+		buttonLayer3.setWidth(400);
+		buttonLayer3.setText("3");
+		buttonLayer3.setPosition(-150, 120);
+		bg.addChild(buttonLayer3);
+		TouchDispatcher.getInstance().addStandardTouchDelegate(buttonLayer3, 1);
+		
+		TouchableObject touchableObject = new TouchableObject();
+		TouchDispatcher.getInstance().addStandardTouchDelegate(touchableObject, 4);
+		
+		TouchableRectObject touchableRectObject = new TouchableRectObject();
+		touchableRectObject.setRect(new RectF(0, 0, 50, 50));
+		TouchDispatcher.getInstance().addStandardTouchDelegate(touchableRectObject, 5);
+		
+	}
+	
+	LabelLayer touchableObjectMsgLabel = new LabelLayer(150f, 100f, false);
+	
+	class TouchableObject implements ITouchable{
+		
+		@Override
+		public boolean onTouchEvent(MotionEvent event) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean onTouchBegan(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableObject onTouchBegan");
+			return true;
+		}
+
+		@Override
+		public void onTouchMoved(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableObject onTouchMoved");
+		}
+
+		@Override
+		public void onTouchEnded(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableObject onTouchEnded");
+		}
+
+		@Override
+		public void onTouchCancelled(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableObject onTouchCancelled");
+		}
+	}
+	
+	class TouchableRectObject extends TouchableObject{
+		private RectF rectf = new RectF();
+		
+		public void setRect(RectF rectf){
+			this.rectf.set(rectf);
+		}
+		
+		@Override
+		public boolean onTouchBegan(MotionEvent event) {
+			// TODO Auto-generated method stub
+			if(rectf.contains(event.getX(), event.getY())){
+				touchableObjectMsgLabel.setText("TouchableRectObject onTouchBegan");
+				return true;
+			}
+			touchableObjectMsgLabel.setText("TouchableRectObject onTouchBegan fail");
+			return false;
+		}
+
+		@Override
+		public void onTouchMoved(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableRectObject onTouchMoved");
+		}
+
+		@Override
+		public void onTouchEnded(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableRectObject onTouchEnded");
+		}
+
+		@Override
+		public void onTouchCancelled(MotionEvent event) {
+			// TODO Auto-generated method stub
+			touchableObjectMsgLabel.setText("TouchableRectObject onTouchCancelled");
+		}
 	}
 
 	GameView gameview;
@@ -260,6 +380,7 @@ public class MyScene extends EasyScene{
 		rectMsgLayer.drawSelf(canvas, null);
 		circleMsgLayer.drawSelf(canvas, null);
 		pointMsgLayer.drawSelf(canvas, null);
+		
 		
 	}
 

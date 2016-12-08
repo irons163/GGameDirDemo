@@ -35,7 +35,7 @@ public class GameActivity extends Stage{
 		}
 		BitmapUtil.initBitmap(this);
 	
-		LayerManager.setLayerBySenceIndex(0);
+		LayerManager.getInstance().setLayerBySenceIndex(0);
 		Scene scene = new MyScene(this, "a", 1, Scene.RESUME);
 		sceneManager = new SceneManager();
 		sceneManager.addScene(scene);

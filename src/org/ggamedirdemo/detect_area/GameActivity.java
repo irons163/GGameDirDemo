@@ -99,9 +99,9 @@ public class GameActivity extends Stage{
 		}
 		BitmapUtil.initBitmap(this);
 	
-		LayerManager.setLayerBySenceIndex(0);
+		LayerManager.getInstance().setLayerBySenceIndex(0);
 		Scene scene = new CollisionRectScene(this, "a", 1, Scene.RESUME);
-//		LayerManager.setLayerBySenceIndex(1);
+//		LayerManager.getInstance().setLayerBySenceIndex(1);
 //		Scene scene2 = new MultiDetectAreaScene(this, "b", 2, Scene.RESTART);
 		
 		sceneManager = new SceneManager();

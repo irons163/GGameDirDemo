@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 
 	
 	private String[] strs = new String[]{
-			 "RemoteController", "RemoteController4D2F", "Stage", "DetectArea", "Layer"
+			 "RemoteController", "RemoteController4D2F", "Stage", "DetectArea", "Layer", "TouchEvent"
 	};
 	
 	@Override
@@ -53,6 +53,9 @@ public class MainActivity extends Activity {
 					break;
 				case 4:
 					intent = new Intent(MainActivity.this, org.ggamedirdemo.layer.GameActivity.class);
+					break;
+				case 5:
+					intent = new Intent(MainActivity.this, org.ggamedirdemo.touchevent.GameActivity.class);
 					break;
 				default:
 					break;

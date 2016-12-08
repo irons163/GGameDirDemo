@@ -221,12 +221,6 @@ public class BasicLayerScene extends EasyScene{
 		}
 
 		@Override
-		public void moveAllChild(int offsetLayerLevel) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
 		public void setParent(ILayer parent) {
 			// TODO Auto-generated method stub
 			
@@ -1141,8 +1135,8 @@ public class BasicLayerScene extends EasyScene{
 	public void doDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 //		sprite.drawSelf(canvas, null);
-//		LayerManager.drawLayers(canvas, null);
-		LayerManager.drawSceneLayersForNegativeZOrder(canvas, null, sceneLayerLevel);
+//		LayerManager.getInstance().drawLayers(canvas, null);
+		LayerManager.getInstance().drawSceneLayersForNegativeZOrder(canvas, null, sceneLayerLevel);
 		
 		Paint paint = new Paint();
 		paint.setTextSize(50);
@@ -1167,7 +1161,7 @@ public class BasicLayerScene extends EasyScene{
 		canvas.drawRect(rectF9, paint);
 		canvas.drawRect(rectF10, paint);
 		
-		LayerManager.drawSceneLayersForOppositeZOrder(canvas, null, sceneLayerLevel);
+		LayerManager.getInstance().drawSceneLayersForOppositeZOrder(canvas, null, sceneLayerLevel);
 	}
 
 	int count =0;
@@ -1188,9 +1182,9 @@ public class BasicLayerScene extends EasyScene{
 //			y = event.getY();
 //		}
 //		
-//		boolean isTouched =  LayerManager.onTouchLayersForOppositeZOrder(event) ||
+//		boolean isTouched =  LayerManager.getInstance().onTouchLayersForOppositeZOrder(event) ||
 //				rect1Layer.onTouchEvent(event) || rectMsgLayer.onTouchEvent(event)||
-//				LayerManager.onTouchLayersForNegativeZOrder(event);
+//				LayerManager.getInstance().onTouchLayersForNegativeZOrder(event);
 //		
 ////		return super.onTouchEvent(event);
 //		return isTouched;
