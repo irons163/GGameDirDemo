@@ -46,6 +46,9 @@
         <activity
             android:name="org.ggamedirdemo.touchevent.GameActivity">
         </activity>
+        <activity
+            android:name="org.ggamedirdemo.scenemanager.GameActivity">
+        </activity>
     </application>
 
 </manifest>

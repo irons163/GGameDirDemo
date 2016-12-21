@@ -1,6 +1,5 @@
 package org.ggamedirdemo.scenemanager;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -19,5 +18,4 @@ public class Crosshair extends Sprite{
 		// TODO Auto-generated method stub
 		super.drawSelf(canvas, paint);
 	}
-	
 }

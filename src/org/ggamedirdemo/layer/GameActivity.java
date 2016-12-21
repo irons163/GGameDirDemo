@@ -1,6 +1,5 @@
 package org.ggamedirdemo.layer;
 
-import org.ggamedirdemo.MainActivity;
 import org.ggamedirdemo.R;
 
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.try_gameengine.framework.Config;
-import com.example.try_gameengine.framework.HUDLayer;
-import com.example.try_gameengine.framework.LayerManager;
 import com.example.try_gameengine.framework.Config.DestanceType;
 import com.example.try_gameengine.scene.Scene;
 import com.example.try_gameengine.scene.SceneManager;

@@ -1,37 +1,19 @@
 package org.ggamedirdemo.layer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.widget.Toast;
 
-import com.example.try_gameengine.action.MAction;
-import com.example.try_gameengine.action.MovementAction;
-import com.example.try_gameengine.action.MovementAtionController;
-import com.example.try_gameengine.action.listener.IActionListener;
 import com.example.try_gameengine.framework.ALayer;
-import com.example.try_gameengine.framework.ALayer.LayerParam;
-import com.example.try_gameengine.framework.ButtonLayer;
 import com.example.try_gameengine.framework.GameView;
 import com.example.try_gameengine.framework.IGameController;
 import com.example.try_gameengine.framework.IGameModel;
@@ -40,29 +22,10 @@ import com.example.try_gameengine.framework.LabelLayer;
 import com.example.try_gameengine.framework.Layer;
 import com.example.try_gameengine.framework.LayerManager;
 import com.example.try_gameengine.framework.Sprite;
-import com.example.try_gameengine.framework.Sprite.MoveRageType;
-import com.example.try_gameengine.framework.Sprite.RotationType;
-import com.example.try_gameengine.remotecontroller.IRemoteController;
-import com.example.try_gameengine.remotecontroller.RemoteController;
-import com.example.try_gameengine.remotecontroller.RemoteController.CommandType;
-import com.example.try_gameengine.remotecontroller.RemoteController.RemoteContollerListener;
-import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommand;
 import com.example.try_gameengine.remotecontroller.custome.Custom4D2FCommandType;
 import com.example.try_gameengine.remotecontroller.custome.Custom4D2FRemoteController;
-import com.example.try_gameengine.scene.DialogScene;
 import com.example.try_gameengine.scene.EasyScene;
-import com.example.try_gameengine.utils.DetectArea;
-import com.example.try_gameengine.utils.DetectAreaPoint;
-import com.example.try_gameengine.utils.DetectAreaRect;
-import com.example.try_gameengine.utils.DetectAreaRequest;
-import com.example.try_gameengine.utils.DetectAreaRound;
-import com.example.try_gameengine.utils.DetectAreaSpriteRect;
 import com.example.try_gameengine.utils.GameTimeUtil;
-import com.example.try_gameengine.utils.IDetectAreaRequest;
-import com.example.try_gameengine.utils.ISpriteDetectAreaListener;
-import com.example.try_gameengine.utils.SpriteDetectAreaBehavior;
-import com.example.try_gameengine.utils.SpriteDetectAreaHandler;
-import com.example.try_gameengine.utils.SpriteDetectAreaHelper;
 
 public class BasicLayerScene extends EasyScene{
 	private int gameTime;
@@ -74,9 +37,6 @@ public class BasicLayerScene extends EasyScene{
 	private RectF userRectF = new RectF(100, 100, 200, 200);
 	private RectF rotateCenterRectF = new RectF(300, 100, 400, 200);
 	private RectF rectF = new RectF(100, 300, 200, 400);
-	private float circleRadius = 50;
-//	private PointF circleCenter = new PointF(550, 250);
-//	private PointF pointF = new PointF(500, 500);
 	private RectF rectF2 = new RectF(500, 100, 600, 200);
 	private RectF rectF3 = new RectF(300, 300, 400, 400);
 	private RectF rectF4 = new RectF(500, 300, 600, 400);
@@ -86,7 +46,6 @@ public class BasicLayerScene extends EasyScene{
 	private RectF rectF8 = new RectF(100, 700, 200, 800);
 	private RectF rectF9 = new RectF(300, 700, 400, 800);
 	private RectF rectF10 = new RectF(500, 700, 600, 800);
-	private Sprite sprite = new Sprite();
 	private LabelLayer dirMsgLayer = new LabelLayer(0.0f, 50.0f, false);
 	private LabelLayer collisionMsgLayer = new LabelLayer(0.0f, 70.0f, false);
 	private Sprite rect1Layer = new Sprite(0.0f, 50.0f, false);
@@ -101,85 +60,7 @@ public class BasicLayerScene extends EasyScene{
 	private Sprite rect6MsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rect7MsgLayer = new Sprite(0.0f, 50.0f, false);
 	private Sprite rect8MsgLayer = new Sprite(0.0f, 50.0f, false);
-	private DetectArea userRectDetectArea;
-	private DetectArea rectDetectArea;
-	private DetectArea circleDetectArea;
-	private DetectArea pointDetectArea;
-	
-	private LabelLayer labelLayer = new LabelLayer(0, 0, false);
-	private ButtonLayer buttonLayer = new ButtonLayer(0, 0, false);
-	
-	private ALayer s = new Sprite();
-	
-	private ALayer a = new Layer();
-	
-	private ALayer m = new ALayer() {
-		
-		@Override
-		protected void onTouched(MotionEvent event) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void drawSelf(Canvas canvas, Paint paint) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
-	
-	class MyA extends Activity{
-		
-	};
-	
-	private void setDectecAreas(){
-		userRectDetectArea = new DetectAreaRect(userRectF);
-		rectDetectArea = new DetectAreaRect(rectF);
-//		circleDetectArea = new DetectAreaRound(circleCenter, circleRadius);
-//		pointDetectArea = new DetectAreaPoint(pointF);
-		
-		SpriteDetectAreaHandler spriteDetectAreaHandler = new SpriteDetectAreaHandler();
-		DetectArea a = new DetectAreaSpriteRect(new RectF(), new DetectAreaSpriteRect.SpriteRectListener() {
-			
-			@Override
-			public RectF calculateSpriteRect() {
-				// TODO Auto-generated method stub
-				RectF rectF;
-				if(sprite.getLocationInScene()!=null)
-					rectF = new RectF(sprite.getLocationInScene().x, sprite.getLocationInScene().y, sprite.getLocationInScene().x + sprite.w, sprite.getLocationInScene().y + sprite.h);
-				else
-					rectF = sprite.getFrame();
-				return rectF;
-			}
-			
-			@Override
-			public PointF calculateSpriteCenter() {
-				// TODO Auto-generated method stub;
-				PointF pointF;
-				if(sprite.getLocationInScene()!=null)
-					pointF = new PointF(sprite.getLocationInScene().x + sprite.w/2, sprite.getLocationInScene().y + sprite.h/2);
-				else
-					pointF = new PointF(sprite.getFrame().centerX(), sprite.getFrame().centerY());
-				return pointF;
-			}
-		});
-	
-		sprite.setSpriteDetectAreaHandler(spriteDetectAreaHandler);
-		spriteDetectAreaHandler.addSuccessorDetectArea(a);
-	}	
-	
-//	private void checkDetectAreasCollision(){
-//		if(DetectArea.detectConditionWithTwoArea(userRectDetectArea, rectDetectArea)){
-//			collisionMsgLayer.setText("Collision RECT");
-//		}else if(DetectArea.detectConditionWithTwoArea(userRectDetectArea, circleDetectArea)){
-//			collisionMsgLayer.setText("Collision CIRCLE");
-//		}else if(DetectArea.detectConditionWithTwoArea(userRectDetectArea, pointDetectArea)){
-//			collisionMsgLayer.setText("Collision POINT");
-//		}else{
-//			collisionMsgLayer.setText("");
-//		}
-//	}
-	
+
 	public BasicLayerScene(final Context context, String id, int level, int mode) {
 		super(context, id, level, mode);
 		// TODO Auto-generated constructor stub
@@ -200,8 +81,6 @@ public class BasicLayerScene extends EasyScene{
 			}
 		});
 		remoteController.setRemoteContollerListener(custom4d2fRemoteContollerListener);
-		
-		setDectecAreas();
 		
 		rect1Layer.setAnchorPoint(0.5f, 1.0f);
 		rectRotateCenterMsgLayer.setAnchorPoint(0.5f, 1.0f);
@@ -272,7 +151,6 @@ public class BasicLayerScene extends EasyScene{
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		child.setRotation(5);
 		rect1Layer.addChild(child);
-//		rect1Layer.setIsClipOutside(true);
 		rect1Layer.setRotation(45);
 		rect1Layer.setBackgroundColor(Color.BLUE);
 
@@ -284,7 +162,6 @@ public class BasicLayerScene extends EasyScene{
 		
 		
 		child = new Sprite();
-//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
 		child.setXscale(1.23f);
 		child.setYscale(1.23f);
@@ -295,19 +172,14 @@ public class BasicLayerScene extends EasyScene{
 		rectRotateCenterMsgLayer.setRotation(45);
 		rectRotateCenterMsgLayer.setIsClipOutside(true);
 		rectRotateCenterMsgLayer.setBackgroundColor(Color.BLUE);
-//		child.setIsClipOutside(true);
 		
 		child = new Sprite();
-//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-//		child.setXscale(0.83f);
-//		child.setYscale(0.83f);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rectRotateCenterMsgLayer.getChild(0).addChild(child);
 		
 		child = new Sprite();
-//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
 		child.setXscale(1.23f);
 		child.setYscale(1.23f);
@@ -321,15 +193,10 @@ public class BasicLayerScene extends EasyScene{
 		child.setIsClipOutside(true);
 		
 		child = new Sprite();
-//		child.setPosition(userRectMsgLayer.getWidth(), userRectMsgLayer.getHeight());
 		child.setPosition(0, 0);
-//		child.setXscale(0.83f);
-//		child.setYscale(0.83f);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		circleMsgLayer.getChild(0).addChild(child);
-//		circleMsgLayer.setRotation(90);
-		
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -383,19 +250,12 @@ public class BasicLayerScene extends EasyScene{
 		child.setYscale(0.3f);
 		child.setAnchorPoint(0.5f, 0.5f);
 		LayerParam layerParam = new LayerParam();
-//		layerParam.setPercentageX(0.5f);
-//		layerParam.setEnabledPercentagePositionX(true);
-//		child.setLayerParam(layerParam);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		pointMsgLayer.addChild(child);
 		Layer layer = new Layer();
 		layer.setBackgroundColor(Color.RED);
 		layer.setzPosition(-1);
 		pointMsgLayer.setAutoSizeByChildren(layer);
-//		pointMsgLayer.setBackgroundColor(Color.BLUE);
-//		pointMsgLayer.setRotation(45);
-		
-		
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -410,7 +270,6 @@ public class BasicLayerScene extends EasyScene{
 		child.setLayerParam(layerParam);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rect2MsgLayer.addChild(child);
-//		rect2MsgLayer.setRotation(45);
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -420,7 +279,6 @@ public class BasicLayerScene extends EasyScene{
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		child.setRotation(5);
 		rect3MsgLayer.addChild(child);
-//		rect1Layer.setIsClipOutside(true);
 		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
 			
 			@Override
@@ -469,7 +327,6 @@ public class BasicLayerScene extends EasyScene{
 				Toast.makeText(context, "AutoSizeLayer touch", Toast.LENGTH_SHORT).show();
 			}
 		});		
-		
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -529,7 +386,6 @@ public class BasicLayerScene extends EasyScene{
 			}
 		});	
 		
-		
 		child = new Sprite();
 		child.setPosition(0, 0);
 		child.setXscale(0.3f);
@@ -548,13 +404,10 @@ public class BasicLayerScene extends EasyScene{
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rect5MsgLayer.addChild(child);
 		
-		
 		child = new Sprite();
 		child.setBitmapAndAutoChangeWH(BitmapUtil.fireball);
 		child.setXscale(0.3f);
 		child.setYscale(0.3f);
-//		child.setAnchorPoint(0.5f, 0.5f);
-//		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rect6MsgLayer.addChild(child);
 		
 		child = new Sprite();
@@ -562,7 +415,6 @@ public class BasicLayerScene extends EasyScene{
 		child.setXscale(0.3f);
 		child.setYscale(0.3f);
 		child.setAnchorPoint(0.5f, 0.5f);
-//		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
 		rect7MsgLayer.addChild(child);
 		
 		child = new Sprite();
@@ -694,30 +546,10 @@ public class BasicLayerScene extends EasyScene{
 		LayerManager.getInstance().drawSceneLayersForOppositeZOrder(canvas, null, sceneLayerLevel);
 	}
 
-	int count =0;
-//	float x = 0;
-//	float y = 0;
 	@Override
 	public boolean onSceneTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
 		return super.onSceneTouchEvent(event);
-//		if(event.getAction() == MotionEvent.ACTION_DOWN){
-//			x = event.getX();
-//			y = event.getY();
-//		}else if(event.getAction() == MotionEvent.ACTION_MOVE){
-//			float dx = event.getX() - x;
-//			float dy = event.getY() - y;
-//			
-//			x = event.getX();
-//			y = event.getY();
-//		}
-//		
-//		boolean isTouched =  LayerManager.getInstance().onTouchLayersForOppositeZOrder(event) ||
-//				rect1Layer.onTouchEvent(event) || rectMsgLayer.onTouchEvent(event)||
-//				LayerManager.getInstance().onTouchLayersForNegativeZOrder(event);
-//		
-////		return super.onTouchEvent(event);
-//		return isTouched;
 	}
 	
 	@Override

@@ -1,11 +1,8 @@
 package org.ggamedirdemo.scenemanager;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-
 import com.example.try_gameengine.framework.Sprite;
-
 public class Sheep extends Sprite{
 
 	public Sheep(float x, float y, boolean autoAdd) {

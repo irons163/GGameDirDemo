@@ -64,32 +64,6 @@ public class MyScene extends EasyScene{
 	private DetectArea circleDetectArea;
 	private DetectArea pointDetectArea;
 	
-	private LabelLayer labelLayer = new LabelLayer(0, 0, false);
-	private ButtonLayer buttonLayer = new ButtonLayer(0, 0, false);
-	
-	private ALayer s = new Sprite();
-	
-	private ALayer a = new Layer();
-	
-	private ALayer m = new ALayer() {
-		
-		@Override
-		protected void onTouched(MotionEvent event) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void drawSelf(Canvas canvas, Paint paint) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
-	
-	class MyA extends Activity{
-		
-	};
-	
 	private void setDectecAreas(){
 		userRectDetectArea = new DetectAreaRect(userRectF);
 		rectDetectArea = new DetectAreaRect(rectF);
@@ -222,9 +196,12 @@ public class MyScene extends EasyScene{
 		TouchableObject touchableObject = new TouchableObject();
 		TouchDispatcher.getInstance().addStandardTouchDelegate(touchableObject, 4);
 		
+		TouchableObject touchableObject2 = new TouchableObject();
+		TouchDispatcher.getInstance().addTargetTouchDelegate(touchableObject2, 4);
+		
 		TouchableRectObject touchableRectObject = new TouchableRectObject();
 		touchableRectObject.setRect(new RectF(0, 0, 50, 50));
-		TouchDispatcher.getInstance().addStandardTouchDelegate(touchableRectObject, 5);
+		TouchDispatcher.getInstance().addTargetTouchDelegate(touchableRectObject, 5);
 		
 	}
 	
@@ -235,6 +212,10 @@ public class MyScene extends EasyScene{
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
 			// TODO Auto-generated method stub
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				touchableObjectMsgLabel.setText("TouchableObject onStandarTouch");
+				return true;
+			}
 			return false;
 		}
 
@@ -331,7 +312,6 @@ public class MyScene extends EasyScene{
 		}
 	}
 	
-	boolean isMoveing = false;
 	private void checkPlayerMoved(){
 		
 		if(custom4d2fRemoteContollerListener.getCurrentMove() == Custom4D2FRemoteContollerListener.LEFT){
@@ -351,14 +331,21 @@ public class MyScene extends EasyScene{
 		}
 		
 		userRectMsgLayer.setPosition(userRectF.centerX(), userRectF.bottom);
-//		player.frameTrig();
 	}
 
+	public void setMode(){
+		
+	}
+	
+	@Override
+	public boolean onSceneTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return super.onSceneTouchEvent(event);
+	}
+	
 	@Override
 	public void doDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
-//		sprite.drawSelf(canvas, null);
-//		LayerManager.getInstance().drawLayers(canvas, null);
 		LayerManager.getInstance().drawSceneLayers(canvas, null, sceneLayerLevel);
 		
 		Paint paint = new Paint();
@@ -369,8 +356,6 @@ public class MyScene extends EasyScene{
 		dirMsgLayer.drawSelf(canvas, paint);
 		collisionMsgLayer.drawSelf(canvas, paint);
 		
-
-		
 		canvas.drawRect(userRectF, paint);
 		canvas.drawRect(rectF, paint);
 		canvas.drawCircle(circleCenter.x, circleCenter.y, circleRadius, paint);
@@ -380,26 +365,11 @@ public class MyScene extends EasyScene{
 		rectMsgLayer.drawSelf(canvas, null);
 		circleMsgLayer.drawSelf(canvas, null);
 		pointMsgLayer.drawSelf(canvas, null);
-		
-		
 	}
-
-	int count =0;
-	float x = 0;
-	float y = 0;
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			x = event.getX();
-			y = event.getY();
-		}else if(event.getAction() == MotionEvent.ACTION_MOVE){
-			float dx = event.getX() - x;
-			float dy = event.getY() - y;
-			
-			x = event.getX();
-			y = event.getY();
-		}
 		return super.onTouchEvent(event);
 	}
 	

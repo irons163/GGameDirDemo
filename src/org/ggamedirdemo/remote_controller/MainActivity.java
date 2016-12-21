@@ -50,9 +50,6 @@ public class MainActivity extends Stage {
 		BitmapUtil.initBitmap(this);
 		
 		StageManager.init(this);
-//		StageManager.addStage("");
-//		StageManager.addStage("");
-//		StageManager.startStage(0);
 		initStage();
 	}
 	
