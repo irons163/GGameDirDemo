@@ -44,7 +44,7 @@ public class GameActivity extends Stage{
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		sceneManager.previous();
+		sceneManager.previousWithExistedScenes();
 	}
 
 	@Override

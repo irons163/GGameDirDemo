@@ -148,7 +148,7 @@ public class GameActivity extends Stage{
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 //		super.onBackPressed();
-		if(!sceneManager.previous())
+		if(!sceneManager.previousWithExistedScenes())
 			super.onBackPressed();
 //		sceneManager.previousAndLeaveWhenNoPrevious();
 	}
