@@ -37,7 +37,7 @@ public class GameActivity extends Stage{
 	
 		LayerManager.getInstance().setLayerBySenceIndex(0);
 		Scene scene = new MyScene(this, "a", 1, Scene.RESUME);
-		sceneManager = new SceneManager();
+		sceneManager = SceneManager.getInstance();
 		sceneManager.addScene(scene);
 		sceneManager.startScene(0);
 		
@@ -47,7 +47,7 @@ public class GameActivity extends Stage{
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		sceneManager.previous();
+		sceneManager.previousWithExistedScenes();
 	}
 
 	@Override

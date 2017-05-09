@@ -23,20 +23,20 @@ public class GameOverDialogScene extends DialogScene{
 	public GameOverDialogScene(Context context, String id) {
 		super(context, id);
 		// TODO Auto-generated constructor stub
-		bgLayer.setPosition(0, bgLayer.h);
+		bgLayer.setPosition(0, bgLayer.getHeight());
 		
 		labelLayer.setTextSize(100);
 		labelLayer.setPosition(500, 500);
 		
 		restartButton.setBitmapAndAutoChangeWH(BitmapUtil.restartBtn01);
 		restartButton.setButtonBitmap(BitmapUtil.restartBtn01, BitmapUtil.restartBtn02, BitmapUtil.restartBtn01);
-		restartButton.setPosition(CommonUtil.screenWidth/2.0f - restartButton.w/2.0f, CommonUtil.screenHeight/4.0f*3);
+		restartButton.setPosition(CommonUtil.screenWidth/2.0f - restartButton.getWidth()/2.0f, CommonUtil.screenHeight/4.0f*3);
 		restartButton.setOnClickListener(new ButtonLayer.OnClickListener() {
 			
 			@Override
 			public void onClick(ButtonLayer buttonLayer) {
 				// TODO Auto-generated method stub
-				((GameActivity)GameOverDialogScene.this.context).sceneManager.previous();
+				((GameActivity)GameOverDialogScene.this.context).sceneManager.previousWithExistedScenes();
 			}
 		});
 	}

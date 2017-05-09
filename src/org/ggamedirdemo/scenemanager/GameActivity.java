@@ -34,7 +34,7 @@ public class GameActivity extends Stage{
 		BitmapUtil.initBitmap(this);
 	
 		Scene scene = new MyScene(this, "a", 0, Scene.RESUME);
-		sceneManager = new SceneManager();
+		sceneManager = SceneManager.getInstance();
 		sceneManager.addScene(scene);
 //		sceneManager.addScene(scene2);
 		sceneManager.startScene(0);
@@ -44,7 +44,7 @@ public class GameActivity extends Stage{
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		sceneManager.previous();
+		sceneManager.previousWithExistedScenes();
 	}
 
 	@Override

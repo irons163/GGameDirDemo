@@ -194,7 +194,7 @@ public class MyScene extends EasyScene{
 				// TODO Auto-generated constructor stub
 			}			
 		}		
-		gameview = new MyGameView(activity, gameController, gameModel); return gameview;
+		return gameview = new MyGameView(activity, gameController, gameModel);
 	}
 
 	@Override

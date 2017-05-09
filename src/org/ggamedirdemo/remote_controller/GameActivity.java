@@ -40,7 +40,7 @@ public class GameActivity extends Stage{
 //		LayerManager.getInstance().setLayerBySenceIndex(1);
 //		Scene scene2 = new MyScene2(this, "b", 2, Scene.RESTART);
 		
-		sceneManager = new SceneManager();
+		sceneManager = SceneManager.getInstance();
 		sceneManager.addScene(scene);
 //		sceneManager.addScene(scene2);
 		
@@ -52,7 +52,7 @@ public class GameActivity extends Stage{
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		sceneManager.previous();
+		sceneManager.previousWithExistedScenes();
 	}
 
 	@Override
