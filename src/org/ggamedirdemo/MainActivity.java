@@ -14,7 +14,7 @@ public class MainActivity extends Activity {
 
 	private String[] strs = new String[] { "RemoteController",
 			"RemoteController4D2F", "Stage", "DetectArea", "Layer",
-			"TouchEvent", "Scene"};
+			"TouchEvent", "Scene", "Extension Module"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,10 @@ public class MainActivity extends Activity {
 					intent = new Intent(MainActivity.this,
 							org.ggamedirdemo.scenemanager.GameActivity.class);
 					break;
+				case 7:
+					intent = new Intent(MainActivity.this,
+							org.ggamedirdemo.extension_module.skill_view.MainActivity.class);
+					break;
 				default:
 					break;
 				}
@@ -72,12 +76,12 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

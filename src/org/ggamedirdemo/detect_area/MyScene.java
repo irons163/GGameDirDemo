@@ -96,7 +96,7 @@ public class MyScene extends EasyScene{
 				// TODO Auto-generated method stub
 				RectF rectF;
 				if(sprite.getLocationInScene()!=null)
-					rectF = new RectF(sprite.getLocationInScene().x, sprite.getLocationInScene().y, sprite.getLocationInScene().x + sprite.w, sprite.getLocationInScene().y + sprite.h);
+					rectF = new RectF(sprite.getLocationInScene().x, sprite.getLocationInScene().y, sprite.getLocationInScene().x + sprite.getWidth(), sprite.getLocationInScene().y + sprite.getHeight());
 				else
 					rectF = sprite.getFrame();
 				return rectF;
@@ -107,7 +107,7 @@ public class MyScene extends EasyScene{
 				// TODO Auto-generated method stub;
 				PointF pointF;
 				if(sprite.getLocationInScene()!=null)
-					pointF = new PointF(sprite.getLocationInScene().x + sprite.w/2, sprite.getLocationInScene().y + sprite.h/2);
+					pointF = new PointF(sprite.getLocationInScene().x + sprite.getWidth()/2, sprite.getLocationInScene().y + sprite.getHeight()/2);
 				else
 					pointF = new PointF(sprite.getFrame().centerX(), sprite.getFrame().centerY());
 				return pointF;
@@ -184,7 +184,7 @@ public class MyScene extends EasyScene{
 	GameView gameview;
 	
 	@Override
-	public void initGameView(Activity activity, IGameController gameController,
+	public GameView initGameView(Activity activity, IGameController gameController,
 			IGameModel gameModel) {
 		// TODO Auto-generated method stub
 		class MyGameView extends GameView{
@@ -194,7 +194,7 @@ public class MyScene extends EasyScene{
 				// TODO Auto-generated constructor stub
 			}			
 		}		
-		gameview = new MyGameView(activity, gameController, gameModel);
+		gameview = new MyGameView(activity, gameController, gameModel); return gameview;
 	}
 
 	@Override

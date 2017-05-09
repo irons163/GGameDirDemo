@@ -399,7 +399,7 @@ public class PositionScene extends EasyScene{
 	GameView gameview;
 	
 	@Override
-	public void initGameView(Activity activity, IGameController gameController,
+	public GameView initGameView(Activity activity, IGameController gameController,
 			IGameModel gameModel) {
 		// TODO Auto-generated method stub
 		class MyGameView extends GameView{
@@ -409,7 +409,7 @@ public class PositionScene extends EasyScene{
 				// TODO Auto-generated constructor stub
 			}			
 		}		
-		gameview = new MyGameView(activity, gameController, gameModel);
+		gameview = new MyGameView(activity, gameController, gameModel); return gameview;
 	}
 
 	@Override

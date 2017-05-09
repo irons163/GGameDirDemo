@@ -124,7 +124,7 @@ public class GameActivity extends Stage{
 //		LayerManager.getInstance().setLayerBySenceIndex(1);
 //		Scene scene2 = new MultiDetectAreaScene(this, "b", 1, Scene.RESTART);
 		
-		sceneManager = new SceneManager();
+		sceneManager = SceneManager.getInstance();
 		sceneManager.addScene(scene);
 //		sceneManager.addScene(scene2);
 		sceneManager.addScene(MultiDetectAreaScene.class, this, "b", 1, Scene.RESTART);
@@ -145,7 +145,7 @@ public class GameActivity extends Stage{
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 //		super.onBackPressed();
-		if(!sceneManager.previous())
+		if(!sceneManager.previousWithExistedScenes())
 			super.onBackPressed();
 //		sceneManager.previousAndLeaveWhenNoPrevious();
 	}

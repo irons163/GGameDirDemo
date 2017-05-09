@@ -158,8 +158,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rect1Layer.getChild(0).addChild(child);
-		
+		rect1Layer.getChildAt(0).addChild(child);
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -177,7 +176,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rectRotateCenterMsgLayer.getChild(0).addChild(child);
+		rectRotateCenterMsgLayer.getChildAt(0).addChild(child);
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -196,7 +195,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		circleMsgLayer.getChild(0).addChild(child);
+		circleMsgLayer.getChildAt(0).addChild(child);
 		
 		child = new Sprite();
 		child.setPosition(0, 0);
@@ -224,7 +223,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rectMsgLayer.getChild(0).addChild(child);
+		rectMsgLayer.getChildAt(0).addChild(child);
 		
 		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
 			
@@ -299,7 +298,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rect3MsgLayer.getChild(0).addChild(child);
+		rect3MsgLayer.getChildAt(0).addChild(child);
 		
 		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
 			
@@ -357,7 +356,7 @@ public class BasicLayerScene extends EasyScene{
 		child.setPosition(0, 0);
 		child.setAnchorPoint(-0.5f, -0.1f);
 		child.setBitmapAndFrameColAndRowNumAndAutoWH(BitmapUtil.hamster, 7, 2);
-		rect4MsgLayer.getChild(0).addChild(child);
+		rect4MsgLayer.getChildAt(0).addChild(child);
 		
 		child.setOnLayerClickListener(new ALayer.OnLayerClickListener() {
 			
@@ -463,7 +462,7 @@ public class BasicLayerScene extends EasyScene{
 	GameView gameview;
 	
 	@Override
-	public void initGameView(Activity activity, IGameController gameController,
+	public GameView initGameView(Activity activity, IGameController gameController,
 			IGameModel gameModel) {
 		// TODO Auto-generated method stub
 		class MyGameView extends GameView{
@@ -473,7 +472,7 @@ public class BasicLayerScene extends EasyScene{
 				// TODO Auto-generated constructor stub
 			}			
 		}		
-		gameview = new MyGameView(activity, gameController, gameModel);
+		gameview = new MyGameView(activity, gameController, gameModel); return gameview;
 	}
 
 	@Override
