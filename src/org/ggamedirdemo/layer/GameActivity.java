@@ -23,7 +23,7 @@ public class GameActivity extends Stage{
 	SceneManager sceneManager;
 	
 	private String[] strs = new String[]{
-			"Layers", "MultiDetectArea", "ScaleDetectArea", "SpriteAction", "PositionLayers", "ChildLayers", "ClipOutSideLayers", "BasicLayers", "Transform", "HUDLayers", "SpriteDetectArea"
+			"Layers", "MultiDetectArea", "ScaleDetectArea", "SpriteAction", "PositionLayers", "ChildLayers", "ClipOutSideLayers", "BasicLayers", "Transform", "HUDLayers", "SpriteDetectArea", "Collision"
 	};
 	
 	@Override
@@ -75,8 +75,9 @@ public class GameActivity extends Stage{
 					sceneManager.startScene(9);
 					break;
 				case 10:
-					intent = new Intent(GameActivity.this, org.ggamedirdemo.stage.MainActivity.class);
-					startActivity(intent);
+					sceneManager.startScene(10);
+//					intent = new Intent(GameActivity.this, org.ggamedirdemo.stage.MainActivity.class);
+//					startActivity(intent);
 					break;
 				default:
 					break;
@@ -135,6 +136,7 @@ public class GameActivity extends Stage{
 		sceneManager.addScene(BasicLayerScene.class, this, "g", 7, Scene.RESTART);
 		sceneManager.addScene(TransformScene.class, this, "g", 8, Scene.RESTART);
 		sceneManager.addScene(HUDLayerScene.class, this, "g", 9, Scene.RESTART);
+		sceneManager.addScene(CollisionScene.class, this, "g", 10, Scene.RESTART);
 		
 //		sceneManager.startScene(0);
 		
